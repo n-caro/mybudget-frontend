@@ -1,7 +1,9 @@
+import { Typography } from '@material-ui/core';
+
 function App() {
   return (
     <div className="App">
-      myBudget
+      <Typography variant="h1">myBudget</Typography>
     </div>
   );
 }
