@@ -1,5 +1,5 @@
 import { Button, Typography, Grid } from "@material-ui/core";
-import illustration_empy from "../../static/illustrations/empty_xct9.svg";
+import illustration_empy from "static/illustrations/empty_xct9.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 
