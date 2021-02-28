@@ -1,40 +1,35 @@
-import { Button, Typography, Grid } from "@material-ui/core";
+import { Button, Typography, Container } from "@material-ui/core";
 import illustration_empy from "static/illustrations/empty_xct9.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
+  },
   imageError: {
-    margin: "60px auto",
-    maxHeight: "320px",
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(10),
+    maxHeight: "240px",
     display: "block",
   },
-  subtitle: {
-    lineHeight: "1.5",
-    color: "#637381",
-    fontWeight: 500,
-    marginTop: "0.5rem",
-  },
   title: {
-    fontSize: "2em",
+    fontSize: "2.3em",
   },
-});
+}));
 
 export default function NotFound() {
   const classes = useStyles();
   return (
-    <>
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="column"
-        style={{ minHeight: "100vh", padding: "0 10px", textAlign: "center" }}
-      >
+    <Container component="main" maxWidth="sm">
+      <div className={classes.paper}>
         <Typography variant="h3" className={classes.title}>
           Página no encontrada
         </Typography>
-        <Typography variant="body1" className={classes.subtitle}>
+        <Typography variant="subtitle1" color="textSecondary">
           Lo sentimos, parece que la página que estás buscando no existe.
         </Typography>
         <img
@@ -51,7 +46,7 @@ export default function NotFound() {
         >
           Ir a la página principal
         </Button>
-      </Grid>
-    </>
+      </div>
+    </Container>
   );
 }
