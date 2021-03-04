@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import useAuth from "hooks/useAuth";
+import useAuth from "hooks/useUser";
 import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
 const validationSchema = yup.object({
   email: yup
     .string()
-    .email("Debes ingresar un correo electrónico válido.")
-    .required("Ingresa un correo electrónico."),
+    .email("You must enter a email address.")
+    .required("Email address is required"),
   password: yup
     .string()
-    .min(6, "La contraseña debe tener un mínimo de 6 caracteres.")
-    .required("Ingresa una contraseña."),
+    .min(6, "Password must be a minimum of 6 characters.")
+    .required("Please enter your password."),
 });
 
 export default function SignIn() {
@@ -67,7 +67,7 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Typography component="h1" variant="h4">
-          Iniciar sesión
+          Sign in to myBudget
         </Typography>
         <form className={classes.form} onSubmit={formik.handleSubmit}>
           {isError && <Alert severity="error">{errorMessage}</Alert>}
@@ -76,7 +76,7 @@ export default function SignIn() {
             margin="normal"
             fullWidth
             id="email"
-            label="Correo electrónico"
+            label="Email address"
             name="email"
             autoFocus
             onChange={formik.handleChange}
@@ -89,7 +89,7 @@ export default function SignIn() {
             margin="normal"
             id="password"
             name="password"
-            label="Contraseña"
+            label="Password"
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
@@ -103,15 +103,15 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Ingresar
+            Login
           </Button>
           <Grid container justify="flex-end" spacing={1}>
             <Grid item>
-              <Typography variant="body1">¿No tienes una cuenta?</Typography>
+              <Typography variant="body1">Don’t have an account?</Typography>
             </Grid>
             <Grid item>
               <Link variant="body1" component={RouterLink} to="/signup">
-                {"Regístrate"}
+                {"Get started"}
               </Link>
             </Grid>
           </Grid>
