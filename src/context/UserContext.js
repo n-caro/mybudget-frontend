@@ -4,7 +4,7 @@ const Context = React.createContext({})
 
 export function UserContextProvider ({children}) {
   const [session, setSession] = useState(
-    () => window.localStorage.getItem('session')
+    () => JSON.parse(window.localStorage.getItem('session'))
   )
 
   return <Context.Provider value={{

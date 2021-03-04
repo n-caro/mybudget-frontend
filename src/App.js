@@ -4,10 +4,12 @@ import { UserContextProvider } from "context/UserContext";
 import NotFound from "pages/NotFound";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
-import Home from "pages/Home";
 import Add from "pages/Add";
+/*
+import Home from "pages/Home";
 import Edit from "pages/Edit";
-import { OperationsContextProvider } from "context/OperationsContext";
+import { OperationsContextProvider } rom "context/OperationsContext";  
+*/
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Switch>
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route exact path="/add" component={Add} />
             {/*<OperationsContextProvider>
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={Add} />
