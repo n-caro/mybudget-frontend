@@ -27,15 +27,15 @@ export default function NotFound() {
     <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
         <Typography variant="h3" className={classes.title}>
-          Página no encontrada
+          Page not found
         </Typography>
         <Typography variant="subtitle1" color="textSecondary">
-          Lo sentimos, parece que la página que estás buscando no existe.
+          Sorry, we couldn’t find the page you’re looking for. 
         </Typography>
         <img
           src={illustration_empy}
           className={classes.imageError}
-          alt="No encontrado"
+          alt="Not found"
         />
         <Button
           variant="contained"
@@ -44,7 +44,7 @@ export default function NotFound() {
           component={RouterLink}
           to="/"
         >
-          Ir a la página principal
+          Go tho Home
         </Button>
       </div>
     </Container>
