@@ -5,10 +5,9 @@ import NotFound from "pages/NotFound";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import Add from "pages/Add";
+import Edit from "pages/Edit";
 /*
 import Home from "pages/Home";
-import Edit from "pages/Edit";
-import { OperationsContextProvider } rom "context/OperationsContext";  
 */
 
 function App() {
@@ -29,11 +28,10 @@ function App() {
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route exact path="/add" component={Add} />
-            {/*<OperationsContextProvider>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/add" component={Add} />
             <Route exact path="/edit" component={Edit} />
-            </OperationsContextProvider> */}
+            {/*
+            <Route exact path="/" component={Home} />
+            <Route exact path="/add" component={Add} />*/}
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

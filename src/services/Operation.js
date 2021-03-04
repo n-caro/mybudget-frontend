@@ -16,7 +16,7 @@ function getOperations({ token }) {
     })
     .catch((error) => {
       console.log("ERROR:", error.response);
-      let message = "Servicio actualmente no disponible.";
+      let message = "Service currently unavailable.";
       if (error.response) {
         message = error.response.data.message;
       }
@@ -45,7 +45,7 @@ function createOperation(token, {amount, categoryId, dateOperation, note, typeId
     })
     .catch((error) => {
       console.log("ERROR:", error.response);
-      let message = "Servicio actualmente no disponible.";
+      let message = "Service currently unavailable..";
       if (error.response) {
         message = error.response.data.message;
       }
@@ -57,4 +57,32 @@ function createOperation(token, {amount, categoryId, dateOperation, note, typeId
     });
 }
 
-export { getOperations, createOperation };
+function updateOperation(token, id, {amount, categoryId, dateOperation, note}) {
+  return axios
+    .patch(`${process.env.REACT_APP_APIURL}/operations/${id}`, {amount, categoryId, dateOperation, note }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      return res;
+    })
+    .then((res) => {
+      console.log("RES:", res);
+      return res.data;
+    })
+    .catch((error) => {
+      console.log("ERROR:", error.response);
+      let message = "Service currently unavailable.";
+      if (error.response) {
+        message = error.response.data.message;
+      }
+      return {
+        error: {
+          message,
+        },
+      };
+    });
+}
+
+export { getOperations, createOperation, updateOperation };
