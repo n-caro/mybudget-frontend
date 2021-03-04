@@ -16,7 +16,7 @@ export default function ListOfOperations({ operations }) {
               </Grid>
             )
           )
-        : <Alert severity="warning">No hay operaciones.</Alert>}
+        : <Alert severity="warning">Operations could not be loaded.</Alert>}
     </Grid>
   );
 }
