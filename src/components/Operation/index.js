@@ -12,13 +12,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import { green, red } from '@material-ui/core/colors';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
   },
   green: {
     color: green[700],
@@ -32,30 +30,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Operation({ category, type, amount, note, date, id }) {
+export default function Operation({operation}) {
+  const history = useHistory();
+  const {Category, Type, amount, note, dateOperation} = operation
   const classes = useStyles();
   const handleEdit = () => {
-    alert("Edit");
+    window.sessionStorage.setItem("operationSelected", JSON.stringify(operation));
+    history.push("/edit");
+  };
+  const handleDelete = () => {
+    //TODO: handle Delete action
+    alert("delete")
   };
 
   return (
     <Card>
       <CardHeader
-        title={category}
-        subheader={moment(date).format("DD/MM/YYYY")}
+        title={Category.name}
+        subheader={moment(dateOperation).format("DD/MM/YYYY")}
         avatar={
-          <Avatar className={type === "income" ? classes.green : classes.red}>
-            {category[0]}
+          <Avatar className={Type.id === 1 ? classes.green : classes.red}>
+            {Category.name[0]}
           </Avatar>
         }
         action={
           <>
             <Typography
-              color={type === "income" ? "primary" : "error"}
+              color={Type.id === 1 ? "primary" : "error"}
               display="inline"
               variant="h6"
             >
-              {type === "income" ? "+" : "-"}${amount}
+              {Type.id === 1 ? "+" : "-"}${amount}
             </Typography>
           </>
         }
@@ -66,10 +71,10 @@ export default function Operation({ category, type, amount, note, date, id }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton size="small" aria-label="Editar operacion" display="inline" onClick={handleEdit}>
+        <IconButton size="small" aria-label="Edit" display="inline" onClick={handleEdit}>
           <EditIcon />
         </IconButton>
-        <IconButton  size="small" aria-label="Eliminar operacion" display="inline" onClick={handleEdit}>
+        <IconButton  size="small" aria-label="Delete" display="inline" onClick={handleDelete}>
           <DeleteIcon />
         </IconButton>
       </CardActions>

@@ -1,11 +1,15 @@
 const axios = require("axios");
 
-function getOperations({ token }) {
+function getOperations({ token, limit, page }) {
   return axios
     .get(`${process.env.REACT_APP_APIURL}/operations`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      params: {
+        limit,
+        page
+      }
     })
     .then((res) => {
       return res;
@@ -34,7 +38,7 @@ function createOperation(token, {amount, categoryId, dateOperation, note, typeId
     .post(`${process.env.REACT_APP_APIURL}/operations`, {amount, categoryId, dateOperation, note, typeId }, {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
+      }
     })
     .then((res) => {
       return res;

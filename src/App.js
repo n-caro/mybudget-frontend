@@ -6,6 +6,7 @@ import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import Add from "pages/Add";
 import Edit from "pages/Edit";
+import Operations from "pages/Operations";
 /*
 import Home from "pages/Home";
 */
@@ -29,6 +30,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route exact path="/add" component={Add} />
             <Route exact path="/edit" component={Edit} />
+            <Route exact path="/operations" component={Operations} />
             {/*
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={Add} />*/}
