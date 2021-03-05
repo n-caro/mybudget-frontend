@@ -3,3 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.App {
+  padding-top: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    padding-top: 150px;
+  }
+}

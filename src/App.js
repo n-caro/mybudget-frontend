@@ -9,7 +9,11 @@ import Edit from "pages/Edit";
 import Operations from "pages/Operations";
 import Home from "pages/Home";
 
+import Header from "components/Header";
+import Container from "@material-ui/core/Container";
+
 function App() {
+
   return (
     <Router>
       <UserContextProvider>
@@ -17,12 +21,13 @@ function App() {
           className="App"
           style={{
             minHeight: "100vh",
-            padding: "0 10px",
             alignItems: "center",
             justifyContent: "center",
-            display: "flex",
+            display: "flex"
           }}
         >
+          <Header />
+          <Container maxWidth="md">
           <Switch>
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
@@ -32,6 +37,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="*" component={NotFound} />
           </Switch>
+          </Container>
         </div>
       </UserContextProvider>
     </Router>

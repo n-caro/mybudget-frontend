@@ -49,10 +49,16 @@ export default function useAuth() {
     [setSession]
   );
 
+  const logout = useCallback(() => {
+    window.sessionStorage.removeItem('session')
+    setSession(null)
+  }, [setSession])
+
   return {
     isLogged: Boolean(session),
     signIn,
     signUp,
+    logout,
     isLoading: state.loading,
     isError: state.error,
     errorMessage: state.errorMessage,
