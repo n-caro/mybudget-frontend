@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
+    marginTop: theme.spacing(5)
   },
   imageError: {
     marginTop: theme.spacing(8),
@@ -44,7 +45,7 @@ export default function NotFound() {
           component={RouterLink}
           to="/"
         >
-          Go tho Home
+          Go to Home
         </Button>
       </div>
     </Container>

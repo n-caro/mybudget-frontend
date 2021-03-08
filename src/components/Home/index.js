@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
   lastOperations: {
     marginTop: theme.spacing(2),
   },
-  titleLast: {
-    padding: theme.spacing(2),
-  },
   btnViewAll: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
@@ -42,7 +39,7 @@ export default function Home() {
     <Container maxWidth="md">
       <Balance amount={balance.currentBalance} />
       <Box className={classes.lastOperations}>
-        <Typography variant="h6" className={classes.titleLast}>
+        <Typography variant="h6">
           Last operations
         </Typography>
         <ListOfOperations operations={operations} />

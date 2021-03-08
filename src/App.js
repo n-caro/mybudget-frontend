@@ -17,15 +17,7 @@ function App() {
   return (
     <Router>
       <UserContextProvider>
-        <div
-          className="App"
-          style={{
-            minHeight: "100vh",
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex"
-          }}
-        >
+        <div className="App">
           <Header />
           <Container maxWidth="md">
           <Switch>
