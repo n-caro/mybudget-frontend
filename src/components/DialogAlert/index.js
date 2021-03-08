@@ -25,7 +25,7 @@ export default function DialogAlert({ title, message, actions, disableClose }) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        {disableClose ? "" : <Button onClick={handleClose}>Cerrar</Button>}
+        {disableClose ? "" : <Button onClick={handleClose}>Close</Button>}
         {actions}
       </DialogActions>
     </Dialog>

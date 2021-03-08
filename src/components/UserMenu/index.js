@@ -17,8 +17,10 @@ import {
 } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AvatarIcon from "@material-ui/icons/Person";
+import useUser from "hooks/useUser"
 
 export default function UserMenu({ user }) {
+  const { logout } = useUser();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const handleClose = (event) => {
@@ -27,6 +29,9 @@ export default function UserMenu({ user }) {
     }
 
     setOpen(false);
+  };
+  const handleLogout = () => {
+    logout()
   };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -71,7 +76,7 @@ export default function UserMenu({ user }) {
                     </Typography>
                   </Box>
                   <Divider light />
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                       <ExitToAppIcon fontSize="small" />
                     </ListItemIcon>

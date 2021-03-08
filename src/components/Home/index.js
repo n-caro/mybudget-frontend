@@ -39,7 +39,7 @@ export default function Home() {
 
   const classes = useStyles();
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Balance amount={balance.currentBalance} />
       <Box className={classes.lastOperations}>
         <Typography variant="h6" className={classes.titleLast}>

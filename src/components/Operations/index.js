@@ -49,7 +49,7 @@ export default function Home() {
 
   const classes = useStyles();
   return (
-    <Container maxWidth="sm">
+    <>
       <Box className={classes.lastOperations}>
         <Typography variant="h6" className={classes.titleLast}>
           Operations
@@ -59,6 +59,6 @@ export default function Home() {
       <Box  className={classes.pagination}>
         <Pagination count={totalPages} page={page} onChange={handleChange} size="large" className={classes.pagination}/>
       </Box>
-    </Container>
+    </>
   );
 }

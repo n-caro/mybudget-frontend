@@ -6,6 +6,7 @@ import {
   CardContent,
   CardHeader,
   CardActions,
+  Button,
 } from "@material-ui/core";
 import moment from "moment";
 import EditIcon from '@material-ui/icons/Edit';
@@ -13,6 +14,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import { green, red } from '@material-ui/core/colors';
 import { useHistory } from "react-router-dom";
+import { useState, useContext } from "react";
+import DialogAlert from "components/DialogAlert";
+import {deleteOperation as deleteOperationService} from "services/Operation"
+import UserContext from "context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,19 +36,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Operation({operation}) {
+  const { session } = useContext(UserContext);
   const history = useHistory();
   const {Category, Type, amount, note, dateOperation} = operation
   const classes = useStyles();
+  const [dialogDelete, setDialogDelete] = useState({open: false, success: false, message: ""})
   const handleEdit = () => {
     window.sessionStorage.setItem("operationSelected", JSON.stringify(operation));
     history.push("/edit");
   };
   const handleDelete = () => {
-    //TODO: handle Delete action
-    alert("delete")
+    setDialogDelete({open: true, sucess:false, message: "Are you sure to delete? This action cannot be reset"})
   };
 
+  const deleteOperation = () => {
+    const id = operation.id
+    const token = session.token
+    deleteOperationService(token, id)
+    .then(res => setDialogDelete({open: true, sucess: true, message: res.message}))
+  }
   return (
+    <>
     <Card>
       <CardHeader
         title={Category.name}
@@ -79,5 +92,9 @@ export default function Operation({operation}) {
         </IconButton>
       </CardActions>
     </Card>
+    {dialogDelete.open && 
+    <DialogAlert title="Confirm delete" message={dialogDelete.message} actions={<Button color="secondary" variant="contained" disabled={dialogDelete.sucess ? "disabled" : ""}onClick={deleteOperation}>Delete</Button>}/>
+    }
+    </>
   );
 }
