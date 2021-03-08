@@ -46,7 +46,7 @@ export default function Home() {
           Last operations
         </Typography>
         <ListOfOperations operations={operations} />
-        {operations && (
+        {operations && operations.length > 0 && (
           <Button
             variant="contained"
             size="large"

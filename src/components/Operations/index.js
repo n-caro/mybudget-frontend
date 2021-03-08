@@ -1,4 +1,4 @@
-import { Container, Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from "@material-ui/core/styles";
 import ListOfOperations from "components/ListOfOperations";
@@ -8,12 +8,8 @@ import { useEffect, useState, useContext } from "react";
 import { getOperations } from "services/Operation";
 
 const useStyles = makeStyles((theme) => ({
-  lastOperations: {
-    marginTop: theme.spacing(5),
-  },
   titleLast: {
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   pagination: {
     align: "center",
@@ -50,7 +46,7 @@ export default function Home() {
   const classes = useStyles();
   return (
     <>
-      <Box className={classes.lastOperations}>
+      <Box>
         <Typography variant="h6" className={classes.titleLast}>
           Operations
         </Typography>
