@@ -50,7 +50,7 @@ export default function useAuth() {
   );
 
   const logout = useCallback(() => {
-    window.sessionStorage.removeItem('session')
+    window.localStorage.removeItem('session')
     setSession(null)
   }, [setSession])
 
