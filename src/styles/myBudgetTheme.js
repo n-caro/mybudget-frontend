@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core/styles";
 export default createMuiTheme({
   typography: {
     fontFamily: [
@@ -15,6 +15,15 @@ export default createMuiTheme({
     fontSize: 16,
     h3: {
       fontWeight: 600,
+    },
+    h4: {
+      fontWeight: 700,
+    },
+    h5: {
+      fontWeight: 700,
+    },
+    h6: {
+      fontWeight: 700,
     },
     button: {
       textTransform: "none",
