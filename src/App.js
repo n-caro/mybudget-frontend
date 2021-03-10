@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "120px"
   },
   main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3)
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -41,7 +40,7 @@ function App() {
       <UserContextProvider>
         <div className={classes.root}>
           <Header />
-          <Container maxWidth="md">
+          <Container maxWidth="md" className={classes.main}>
           <Switch>
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
