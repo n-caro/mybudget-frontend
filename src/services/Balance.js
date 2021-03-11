@@ -1,29 +1,18 @@
-const axios = require("axios");
+import handleError from "./helpers/handleError";
+import axios from "axios";
 
-function getBalanceService({token}) {
+function getBalanceService({ token }) {
   return axios
     .get(`${process.env.REACT_APP_APIURL}/balance`, {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then((res) => {
-      return res;
+        Authorization: `Bearer ${token}`,
+      },
     })
     .then((res) => {
       return res.data;
     })
     .catch((error) => {
-      console.log("ERROR:", error.response)
-      let message = "Servicio actualmente no disponible.";
-      if (error.response) {
-        message = error.response.data.message;
-      }
-      return {
-        error: {
-          message
-        },
-      };
+      return handleError(error);
     });
 }
 
