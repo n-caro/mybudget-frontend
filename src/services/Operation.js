@@ -1,12 +1,9 @@
+import axios from "./helpers/axios.token";
 import handleError from "./helpers/handleError";
-import axios from "axios";
 
-function getOperations({ token, limit, page }) {
+function getOperations({ limit, page }) {
   return axios
-    .get(`${process.env.REACT_APP_APIURL}/operations`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    .get("/operations", {
       params: {
         limit,
         page,
@@ -20,20 +17,9 @@ function getOperations({ token, limit, page }) {
     });
 }
 
-function createOperation(
-  token,
-  { amount, categoryId, dateOperation, note, typeId }
-) {
+function createOperation({ amount, categoryId, dateOperation, note, typeId }) {
   return axios
-    .post(
-      `${process.env.REACT_APP_APIURL}/operations`,
-      { amount, categoryId, dateOperation, note, typeId },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    .post("/operations", { amount, categoryId, dateOperation, note, typeId })
     .then((res) => {
       return res.data;
     })
@@ -42,21 +28,9 @@ function createOperation(
     });
 }
 
-function updateOperation(
-  token,
-  id,
-  { amount, categoryId, dateOperation, note }
-) {
+function updateOperation(id, { amount, categoryId, dateOperation, note }) {
   return axios
-    .patch(
-      `${process.env.REACT_APP_APIURL}/operations/${id}`,
-      { amount, categoryId, dateOperation, note },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    .patch(`/operations/${id}`, { amount, categoryId, dateOperation, note })
     .then((res) => {
       return res.data;
     })
@@ -65,13 +39,9 @@ function updateOperation(
     });
 }
 
-function deleteOperation(token, id) {
+function deleteOperation(id) {
   return axios
-    .delete(`${process.env.REACT_APP_APIURL}/operations/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .delete(`/operations/${id}`, {})
     .then((res) => {
       return res.data;
     })

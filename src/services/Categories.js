@@ -1,13 +1,9 @@
 import handleError from "./helpers/handleError";
-import axios from "axios";
+import axios from "./helpers/axios.token";
 
-function getCategories({ token }) {
+function getCategories() {
   return axios
-    .get(`${process.env.REACT_APP_APIURL}/categories`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get("/categories")
     .then((res) => {
       return res.data;
     })

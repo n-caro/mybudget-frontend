@@ -1,13 +1,9 @@
 import handleError from "./helpers/handleError";
-import axios from "axios";
+import axios from "./helpers/axios.token";
 
-function getBalanceService({ token }) {
+function getBalanceService() {
   return axios
-    .get(`${process.env.REACT_APP_APIURL}/balance`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get("/balance")
     .then((res) => {
       return res.data;
     })
