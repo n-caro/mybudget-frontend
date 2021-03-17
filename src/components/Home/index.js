@@ -24,6 +24,7 @@ export default function Home() {
   useEffect(() => {
     getBalanceService().then((res) => {
       if (res.balance) setBalance(res.balance);
+      console.log(res.balance);
     });
     getOperations({ limit: 10 }).then((res) => {
       setOperations(res.operations);
@@ -33,7 +34,11 @@ export default function Home() {
   const classes = useStyles();
   return (
     <Container maxWidth="md">
-      <Balance amount={balance.currentBalance} />
+      <Balance
+        amountBalance={balance.currentBalance}
+        amountIncomes={balance.totalIncomes}
+        amountExpenses={balance.totalExpenses}
+      />
       <Box className={classes.lastOperations}>
         <Typography variant="h6">Last operations</Typography>
         <ListOfOperations operations={operations} />
