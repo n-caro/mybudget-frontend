@@ -1,4 +1,5 @@
-const axios = require("axios");
+import handleError from "./helpers/handleError";
+import axios from "axios";
 
 function signInService({ email, password }) {
   return axios
@@ -7,21 +8,10 @@ function signInService({ email, password }) {
       password,
     })
     .then((res) => {
-      return res;
-    })
-    .then((res) => {
       return res.data;
     })
     .catch((error) => {
-      let message = "Servicio actualmente no disponible.";
-      if (error.response) {
-        message = error.response.data.message;
-      }
-      return {
-        error: {
-          message,
-        },
-      };
+      return handleError(error);
     });
 }
 
@@ -33,21 +23,10 @@ function signUpService({ name, email, password }) {
       password,
     })
     .then((res) => {
-      return res;
-    })
-    .then((res) => {
       return res.data;
     })
     .catch((error) => {
-      let message = "Servicio actualmente no disponible.";
-      if (error.response) {
-        message = error.response.data.message;
-      }
-      return {
-        error: {
-          message,
-        },
-      };
+      return handleError(error);
     });
 }
 

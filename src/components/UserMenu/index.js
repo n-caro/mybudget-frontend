@@ -14,10 +14,11 @@ import {
   ListItemIcon,
   Typography,
   Avatar,
+  Tooltip,
 } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AvatarIcon from "@material-ui/icons/Person";
-import useUser from "hooks/useUser"
+import useUser from "hooks/useUser";
 
 export default function UserMenu({ user }) {
   const { logout } = useUser();
@@ -31,7 +32,7 @@ export default function UserMenu({ user }) {
     setOpen(false);
   };
   const handleLogout = () => {
-    logout()
+    logout();
   };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -39,16 +40,18 @@ export default function UserMenu({ user }) {
 
   return (
     <>
-      <IconButton
-        ref={anchorRef}
-        aria-controls={open ? "menu-list-grow" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        <Avatar>
-          <AvatarIcon />
-        </Avatar>
-      </IconButton>
+      <Tooltip title="Account">
+        <IconButton
+          ref={anchorRef}
+          aria-controls={open ? "menu-list-grow" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          <Avatar>
+            <AvatarIcon />
+          </Avatar>
+        </IconButton>
+      </Tooltip>
       <Popper
         open={open}
         anchorEl={anchorRef.current}

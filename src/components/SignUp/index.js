@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import useAuth from "hooks/useUser";
@@ -39,7 +39,7 @@ const validationSchema = yup.object({
   name: yup.string().required("Enter a name."),
   email: yup
     .string()
-    .email("The field")
+    .email("The field must contain a valid email address.")
     .required("The field must contain a valid email address."),
   password: yup
     .string()
@@ -53,12 +53,11 @@ const validationSchema = yup.object({
 
 export default function SignUp() {
   const { isLogged, signUp, isError, errorMessage } = useAuth();
-  const history  = useHistory();
   useEffect(() => {
     if (isLogged) {
-      history.push("/");
+      window.location.href = "/";
     }
-  }, [isLogged, history]);
+  }, [isLogged]);
 
   const classes = useStyles();
   const formik = useFormik({
@@ -70,7 +69,7 @@ export default function SignUp() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      signUp(values)
+      signUp(values);
     },
   });
   return (
@@ -84,10 +83,11 @@ export default function SignUp() {
           color="textSecondary"
           className={classes.subtitle}
         >
-          Create your myBudget account and start managing your personal budget, it's totally free!
+          Create your myBudget account and start managing your personal budget,
+          it's totally free!
         </Typography>
         <form className={classes.form} onSubmit={formik.handleSubmit}>
-        {isError && <Alert severity="error">{errorMessage}</Alert>}
+          {isError && <Alert severity="error">{errorMessage}</Alert>}
           <TextField
             variant="outlined"
             margin="normal"

@@ -9,7 +9,7 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import useAuth from "hooks/useUser";
@@ -43,14 +43,13 @@ const validationSchema = yup.object({
 });
 
 export default function SignIn() {
-  const history = useHistory();
   const { isLogged, signIn, isError, errorMessage } = useAuth();
 
   useEffect(() => {
     if (isLogged) {
-      history.push("/");
+      window.location.href = "/";
     }
-  }, [isLogged, history]);
+  }, [isLogged]);
 
   const classes = useStyles();
   const formik = useFormik({

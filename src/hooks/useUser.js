@@ -41,7 +41,7 @@ export default function useAuth() {
           setSession(res);
         })
         .catch((err) => {
-          window.sessionStorage.removeItem("session");
+          window.localStorage.removeItem("session");
           setState({ loading: false, error: true, errorMessage: err.message });
           console.error(err);
         });
@@ -50,9 +50,9 @@ export default function useAuth() {
   );
 
   const logout = useCallback(() => {
-    window.localStorage.removeItem('session')
-    setSession(null)
-  }, [setSession])
+    window.localStorage.removeItem("session");
+    setSession(null);
+  }, [setSession]);
 
   return {
     isLogged: Boolean(session),

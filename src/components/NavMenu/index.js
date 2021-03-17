@@ -1,4 +1,4 @@
-import { Link as RouterLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // icons
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import ViewListRoundedIcon from "@material-ui/icons/ViewListRounded";
@@ -9,33 +9,47 @@ const useStyles = makeStyles((theme) => ({
   navIcons: {
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
+    color: theme.palette.grey[600],
+    "&:hover": {
+      background: theme.palette.action.selected,
+    },
+  },
+  navIconActive: {
+    color: theme.palette.grey[900],
   },
 }));
 
-export default function NavigationMenu() {
+function ItemMenu({ to, pageName, icon }) {
   const classes = useStyles();
   return (
+    <Tooltip title={pageName}>
+      <Button
+        className={classes.navIcons}
+        size="large"
+        component={NavLink}
+        to={to}
+        exact
+        activeClassName={classes.navIconActive}
+      >
+        {icon}
+      </Button>
+    </Tooltip>
+  );
+}
+
+export default function NavigationMenu() {
+  return (
     <>
-      <Tooltip title="Home">
-        <Button
-          className={classes.navIcons}
-          size="large"
-          component={RouterLink}
-          to="/"
-        >
-          <HomeRoundedIcon fontSize="large" color="action" />
-        </Button>
-      </Tooltip>
-      <Tooltip title="Operations">
-        <Button
-          className={classes.navIcons}
-          size="large"
-          component={RouterLink}
-          to="/operations"
-        >
-          <ViewListRoundedIcon fontSize="large" color="action" />
-        </Button>
-      </Tooltip>
+      <ItemMenu
+        pageName="Home"
+        to="/"
+        icon={<HomeRoundedIcon fontSize="large" />}
+      />
+      <ItemMenu
+        pageName="Operations"
+        to="/operations"
+        icon={<ViewListRoundedIcon fontSize="large" />}
+      />
     </>
   );
 }

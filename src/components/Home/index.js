@@ -1,45 +1,51 @@
-import { Container, Box, Typography, Button } from "@material-ui/core";
+import { Container, Box, Typography, Button, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Balance from "components/Balance";
 import ListOfOperations from "components/ListOfOperations";
-
-import UserContext from "context/UserContext";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { getBalanceService } from "services/Balance";
 import { getOperations } from "services/Operation";
 import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  lastOperations: {
-    marginTop: theme.spacing(2),
-  },
+  lastOperations: { marginTop: 0 },
   btnViewAll: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
+  divider: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
+  title: {
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 export default function Home() {
-  const { session } = useContext(UserContext);
   const [operations, setOperations] = useState([]);
   const [balance, setBalance] = useState({});
 
   useEffect(() => {
-    let token = session.token;
-    getBalanceService({ token }).then((res) => {
+    getBalanceService().then((res) => {
       if (res.balance) setBalance(res.balance);
     });
-    getOperations({ token, limit: 10 }).then((res) => {
+    getOperations({ limit: 10 }).then((res) => {
       setOperations(res.operations);
     });
-  }, [session]);
+  }, []);
 
   const classes = useStyles();
   return (
     <Container maxWidth="md">
-      <Balance amount={balance.currentBalance} />
+      <Balance
+        amountBalance={balance.currentBalance}
+        amountIncomes={balance.totalIncomes}
+        amountExpenses={balance.totalExpenses}
+      />
+      <Divider className={classes.divider} />
       <Box className={classes.lastOperations}>
-        <Typography variant="h6">
+        <Typography variant="h5" className={classes.title}>
           Last operations
         </Typography>
         <ListOfOperations operations={operations} />

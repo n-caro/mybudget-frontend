@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@material-ui/core/styles";
 import myBudgetTheme from "./styles/myBudgetTheme";
 
+// redux
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={myBudgetTheme}>

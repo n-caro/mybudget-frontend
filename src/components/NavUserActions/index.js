@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     border: "1px solid",
+    color: theme.palette.primary.main,
+    "&:hover": {
+      background: theme.palette.primary.light,
+      color: theme.palette.primary.contrastText,
+      borderColor: theme.palette.primary.light,
+    },
   },
 }));
 
@@ -23,9 +29,8 @@ export default function NavigationMenu() {
           component={RouterLink}
           to="/add"
           size="small"
-          color="primary"
         >
-          <AddRoundedIcon fontSize="medium" />
+          <AddRoundedIcon fontSize="default" />
         </IconButton>
       </Tooltip>
     </>

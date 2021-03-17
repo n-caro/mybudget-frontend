@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# myBudget-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+A personal budget management 💸 web app built in React and Material UI and **myBudget-api**
 
-In the project directory, you can run:
+This is the frontend (client side) of the myBudget app. To see the backend API (server side) visit the repository: [github.com/n-caro/mybudget-backend](https://github.com/n-caro/mybudget-backend)
 
-### `yarn start`
+## 1. About myBudget
+Some features and dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* 🎨 Material UI and Material UI icons.
+* Axios for API calls
+* Form validations with Formik
+* React router doom.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 2. Features
+* User registration and authentication
+* Create operations of type Income or Expenses
+* Edit operations that have already been created
+* Delete operations
+* View account balance (current balance, total incomes, total expenses)
+* List of all operations, with pagination
+## 2. Install and usage
 
-### `yarn test`
+#### Install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+#clone the repository and go
 
-### `yarn build`
+$ git clone https://github.com/n-caro/mybudget-frontend.git
+$ cd mybudget-frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#Install dependencies (yarn recommended)
+$ yarn install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#or npm
+$ npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After install dependencies, create a .env file (you can rename `.env.example` file) and set the URL for myBudget-api ([github.com/n-caro/mybudget-backend](https://github.com/n-caro/mybudget-backend))
 
-### `yarn eject`
+**.env (example):**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+REACT_APP_APIURL = http://localhost:4000/api
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```shell
+$ yarn start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#or npm
+$ npm start
+```
 
-## Learn More
+And go to http://localhost:3000
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 3. Screenshots
+###### Sign up (and validations)
+![Sign up and validations](docs/resources/signUp-validations.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Sign in (and validations)
+![Sign in](docs/resources/login.gif)
 
-### Code Splitting
+###### Add operation
+![Add operations](docs/resources/addOperation.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+###### Edit operation
+![Edit operation](docs/resources/edit.gif)
 
-### Analyzing the Bundle Size
+###### Delete operation
+![Delete operation](docs/resources/delete.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+###### Operations (and pagination)
+![Operations](docs/resources/operations.gif)
 
-### Making a Progressive Web App
+###### Menu
+![Sign in](docs/resources/actions-logout.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 4. Upcoming Features
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Operations: Filter by type
+* Operations: Select limit of results per page
+* Loading bar when API calls are made
+* Store and Actions for Operations (Redux or UseContext and useDispatch)
+* Animations for route change and data loading
+* Reports page (graphs) [Requires API update]
