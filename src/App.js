@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    paddingTop: "120px",
+    paddingTop: "100px",
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: "160px",
+    },
   },
   main: {
     marginBottom: theme.spacing(3),

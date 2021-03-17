@@ -1,4 +1,4 @@
-import { Container, Box, Typography, Button } from "@material-ui/core";
+import { Container, Box, Typography, Button, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Balance from "components/Balance";
 import ListOfOperations from "components/ListOfOperations";
@@ -8,12 +8,17 @@ import { getOperations } from "services/Operation";
 import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  lastOperations: {
-    marginTop: theme.spacing(2),
-  },
+  lastOperations: { marginTop: 0 },
   btnViewAll: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  divider: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
+  title: {
+    marginBottom: theme.spacing(3),
   },
 }));
 
@@ -24,7 +29,6 @@ export default function Home() {
   useEffect(() => {
     getBalanceService().then((res) => {
       if (res.balance) setBalance(res.balance);
-      console.log(res.balance);
     });
     getOperations({ limit: 10 }).then((res) => {
       setOperations(res.operations);
@@ -39,8 +43,11 @@ export default function Home() {
         amountIncomes={balance.totalIncomes}
         amountExpenses={balance.totalExpenses}
       />
+      <Divider className={classes.divider} />
       <Box className={classes.lastOperations}>
-        <Typography variant="h6">Last operations</Typography>
+        <Typography variant="h5" className={classes.title}>
+          Last operations
+        </Typography>
         <ListOfOperations operations={operations} />
         {operations && operations.length > 0 && (
           <Button

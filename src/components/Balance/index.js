@@ -1,11 +1,28 @@
-import { Avatar, Card, CardContent, Grid, Typography } from "@material-ui/core";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import TrendingUpRoundedIcon from "@material-ui/icons/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@material-ui/icons/TrendingDownRounded";
 import { green, red } from "@material-ui/core/colors";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    boxShadow:
+      "rgb(145 158 171 / 24%) 0px 0px 2px 0px,rgb(145 158 171 / 24%) 0px 16px 32px -4px",
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
 function CardTotal({ amount, title, isIncome, isExpense }) {
+  const classes = useStyles();
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardContent>
         <Grid
           container
@@ -49,11 +66,12 @@ export default function Balance({
   amountIncomes,
   amountExpenses,
 }) {
+  const classes = useStyles();
   return (
     <>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Card>
+          <Card className={classes.root}>
             <CardContent align="center">
               <Typography variant="h4" gutterBottom>
                 {!isNaN(amountBalance) ? "$" + amountBalance.toFixed(2) : "..."}

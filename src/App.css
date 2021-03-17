@@ -5,11 +5,11 @@
 }
 
 .App {
-  padding-top: 100px;
+  padding-top: 120px;
 }
 
 @media only screen and (max-width: 600px) {
   .App {
-    padding-top: 150px;
+    padding-top: 160px;
   }
 }

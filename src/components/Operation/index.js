@@ -20,7 +20,10 @@ import { deleteOperation as deleteOperationService } from "services/Operation";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    boxShadow:
+      "rgb(145 158 171 / 24%) 0px 0px 2px 0px,rgb(145 158 171 / 24%) 0px 16px 32px -4px",
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
   green: {
     color: green[700],
@@ -66,7 +69,7 @@ export default function Operation({ operation }) {
   };
   return (
     <>
-      <Card>
+      <Card className={classes.root}>
         <CardHeader
           title={Category.name}
           subheader={moment(dateOperation).format("DD/MM/YYYY")}
