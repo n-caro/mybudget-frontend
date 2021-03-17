@@ -81,9 +81,9 @@ And go to http://localhost:3000
 
 ## 4. Upcoming Features
 
-[ ] - Operations: Filter by type
-[ ] - Operations: Select limit of results per page
-[ ] - Loading bar when API calls are made
-[ ] - Store and Actions for Operations (Redux or UseContext and useDispatch)
-[ ] - Animations for route change and data loading
-[ ] - Reports page (graphs) [Requires API update]
+* Operations: Filter by type
+* Operations: Select limit of results per page
+* Loading bar when API calls are made
+* Store and Actions for Operations (Redux or UseContext and useDispatch)
+* Animations for route change and data loading
+* Reports page (graphs) [Requires API update]
