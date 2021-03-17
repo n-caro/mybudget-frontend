@@ -8,15 +8,13 @@ import {
   Grid,
   Button,
 } from "@material-ui/core";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { createOperation } from "services/Operation";
-import Context from "context/UserContext";
 import Alert from "@material-ui/lab/Alert";
 import { Link as RouterLink } from "react-router-dom";
 import DialogAlert from "components/DialogAlert";
 
-export default function OperationForm({categories}) {
-  const { session } = useContext(Context);
+export default function OperationForm({ categories }) {
   const [statusSubmit, setStatusSubmit] = useState({
     error: false,
     loading: false,
@@ -24,22 +22,22 @@ export default function OperationForm({categories}) {
   });
 
   // valuesForm
-  const [note, setNote] = useState('')
-  const [amount, setAmount] = useState('')
-  const [dateOperation, setDateOperation] = useState('')
+  const [note, setNote] = useState("");
+  const [amount, setAmount] = useState("");
+  const [dateOperation, setDateOperation] = useState("");
   const [typeId, setTypeId] = useState("");
-  const [categoryId, setCategoryId] = useState('');
+  const [categoryId, setCategoryId] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setStatusSubmit({ loading: true });
 
-    createOperation(session.token, {
+    createOperation({
       amount,
       categoryId,
       dateOperation,
       note,
-      typeId
+      typeId,
     }).then((operation) => {
       if (operation.error) {
         setStatusSubmit({
@@ -74,7 +72,7 @@ export default function OperationForm({categories}) {
               fullWidth
               required
               value={note}
-              onChange={event => setNote(event.target.value)}
+              onChange={(event) => setNote(event.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -87,7 +85,7 @@ export default function OperationForm({categories}) {
               type="number"
               required
               value={amount}
-              onChange={event => setAmount(event.target.value)}
+              onChange={(event) => setAmount(event.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -102,7 +100,7 @@ export default function OperationForm({categories}) {
               }}
               required
               value={dateOperation}
-              onChange={event => setDateOperation(event.target.value)}
+              onChange={(event) => setDateOperation(event.target.value)}
             />
           </Grid>
           <Grid item xs={6}>
@@ -118,7 +116,7 @@ export default function OperationForm({categories}) {
                 type="number"
                 required
                 value={typeId}
-                onChange={event => setTypeId(+event.target.value)}
+                onChange={(event) => setTypeId(+event.target.value)}
               >
                 <MenuItem value={1}>Income</MenuItem>
                 <MenuItem value={2}>Expense</MenuItem>
@@ -136,13 +134,20 @@ export default function OperationForm({categories}) {
                 label="Category"
                 id="demo-simple-select"
                 required
-                disabled = {typeId === "" ? true : false}
+                disabled={typeId === "" ? true : false}
                 value={categoryId}
-                onChange={event => setCategoryId(+event.target.value)}
+                onChange={(event) => setCategoryId(+event.target.value)}
               >
-                {typeId !== "" && 
-                  categories.flatMap(category => (category.Type.id === typeId) ? <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem> : [])
-                }
+                {typeId !== "" &&
+                  categories.flatMap((category) =>
+                    category.Type.id === typeId ? (
+                      <MenuItem value={category.id} key={category.id}>
+                        {category.name}
+                      </MenuItem>
+                    ) : (
+                      []
+                    )
+                  )}
               </Select>
             </FormControl>
           </Grid>

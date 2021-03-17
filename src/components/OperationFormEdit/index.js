@@ -9,9 +9,8 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { updateOperation } from "services/Operation";
-import UserContext from "context/UserContext";
 import Alert from "@material-ui/lab/Alert";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import DialogAlert from "components/DialogAlert";
@@ -20,7 +19,6 @@ import moment from "moment";
 
 export default function FormEditOperation({ categories }) {
   const history = useHistory();
-  const { session } = useContext(UserContext);
   const [statusSubmit, setStatusSubmit] = useState({
     error: false,
     loading: false,
@@ -56,7 +54,7 @@ export default function FormEditOperation({ categories }) {
     event.preventDefault();
     setStatusSubmit({ loading: true });
 
-    updateOperation(session.token, idOperation, {
+    updateOperation(idOperation, {
       amount,
       categoryId,
       dateOperation,
