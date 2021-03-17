@@ -2,6 +2,7 @@ import { Button, Typography, Container } from "@material-ui/core";
 import illustration_empy from "static/illustrations/empty_xct9.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(5),
   },
   imageError: {
     marginTop: theme.spacing(8),
@@ -25,29 +26,34 @@ const useStyles = makeStyles((theme) => ({
 export default function NotFound() {
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="sm">
-      <div className={classes.paper}>
-        <Typography variant="h3" className={classes.title}>
-          Page not found
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          Sorry, we couldn’t find the page you’re looking for. 
-        </Typography>
-        <img
-          src={illustration_empy}
-          className={classes.imageError}
-          alt="Not found"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          component={RouterLink}
-          to="/"
-        >
-          Go to Home
-        </Button>
-      </div>
-    </Container>
+    <>
+      <Container component="main" maxWidth="sm">
+        <div className={classes.paper}>
+          <Typography variant="h3" className={classes.title}>
+            Page not found
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            Sorry, we couldn’t find the page you’re looking for.
+          </Typography>
+          <img
+            src={illustration_empy}
+            className={classes.imageError}
+            alt="Not found"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            component={RouterLink}
+            to="/"
+          >
+            Go to Home
+          </Button>
+        </div>
+      </Container>
+      <Helmet>
+        <title>Page not found | myBudget</title>
+      </Helmet>
+    </>
   );
 }
